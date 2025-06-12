@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4F1F9076-A934-48F0-BE14-696BBA3D73AF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PresentationLayer</RootNamespace>
+    <AssemblyName>PresentationLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net48\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.10.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.10\lib\net48\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.10.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.10\lib\net48\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\AddBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\AddBookForm.Designer.cs">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\AddNewBook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\AddNewBook.Designer.cs">
+      <DependentUpon>AddNewBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\ReadBarcodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\ReadBarcodeForm.Designer.cs">
+      <DependentUpon>ReadBarcodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\ViewCurrentBooks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\ViewCurrentBooks.Designer.cs">
+      <DependentUpon>ViewCurrentBooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\AddBorrowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\AddBorrowForm.Designer.cs">
+      <DependentUpon>AddBorrowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Departments\AddUpdateDepartmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Departments\AddUpdateDepartmentForm.Designer.cs">
+      <DependentUpon>AddUpdateDepartmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Employees\EditEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Employees\EditEmployeeForm.Designer.cs">
+      <DependentUpon>EditEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Students\AddStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Students\AddStudentForm.Designer.cs">
+      <DependentUpon>AddStudentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Tasks\AddTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Tasks\AddTaskForm.Designer.cs">
+      <DependentUpon>AddTaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Students\StudentProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\Students\StudentProfileForm.Designer.cs">
+      <DependentUpon>StudentProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\UpdateBorrowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\AddUpdateForms\BooksAndBorrows\UpdateBorrowForm.Designer.cs">
+      <DependentUpon>UpdateBorrowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\EMainMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\EMainMenuForm.Designer.cs">
+      <DependentUpon>EMainMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\FiltersForms\BookFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\FiltersForms\BookFilter.Designer.cs">
+      <DependentUpon>BookFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\FiltersForms\BorrowFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\FiltersForms\BorrowFilter.Designer.cs">
+      <DependentUpon>BorrowFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\FiltersForms\EmployeeFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\FiltersForms\EmployeeFilter.Designer.cs">
+      <DependentUpon>EmployeeFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\FiltersForms\StudentFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\FiltersForms\StudentFilter.Designer.cs">
+      <DependentUpon>StudentFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\Login\SignupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\Login\SignupForm.Designer.cs">
+      <DependentUpon>SignupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\Login\StartUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\Login\StartUp.Designer.cs">
+      <DependentUpon>StartUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\Menues\BooksForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Froms\Menues\BooksForm.Designer.cs">
+      <DependentUpon>BooksForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\Menues\HomeForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Froms\Menues\HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\Menues\ProfileForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Froms\Menues\ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\Menues\StaticsForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Froms\Menues\StaticsForm.Designer.cs">
+      <DependentUpon>StaticsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\Menues\StudentsForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Froms\Menues\StudentsForm.Designer.cs">
+      <DependentUpon>StudentsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Froms\StudentPage\StudateMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Froms\StudentPage\StudateMainForm.Designer.cs">
+      <DependentUpon>StudateMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Froms\AddUpdateForms\BooksAndBorrows\AddBookForm.resx">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\BooksAndBorrows\AddNewBook.resx">
+      <DependentUpon>AddNewBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\BooksAndBorrows\ReadBarcodeForm.resx">
+      <DependentUpon>ReadBarcodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\BooksAndBorrows\ViewCurrentBooks.resx">
+      <DependentUpon>ViewCurrentBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\BooksAndBorrows\AddBorrowForm.resx">
+      <DependentUpon>AddBorrowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\Departments\AddUpdateDepartmentForm.resx">
+      <DependentUpon>AddUpdateDepartmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\Employees\EditEmployeeForm.resx">
+      <DependentUpon>EditEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\Students\AddStudentForm.resx">
+      <DependentUpon>AddStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\Tasks\AddTaskForm.resx">
+      <DependentUpon>AddTaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\Students\StudentProfileForm.resx">
+      <DependentUpon>StudentProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\AddUpdateForms\BooksAndBorrows\UpdateBorrowForm.resx">
+      <DependentUpon>UpdateBorrowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\EMainMenuForm.resx">
+      <DependentUpon>EMainMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\FiltersForms\BookFilter.resx">
+      <DependentUpon>BookFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\FiltersForms\BorrowFilter.resx">
+      <DependentUpon>BorrowFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\FiltersForms\EmployeeFilter.resx">
+      <DependentUpon>EmployeeFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\FiltersForms\StudentFilter.resx">
+      <DependentUpon>StudentFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\Login\SignupForm.resx">
+      <DependentUpon>SignupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\Login\StartUp.resx">
+      <DependentUpon>StartUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\Menues\BooksForm.resx">
+      <DependentUpon>BooksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\Menues\HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\Menues\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\Menues\StaticsForm.resx">
+      <DependentUpon>StaticsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\Menues\StudentsForm.resx">
+      <DependentUpon>StudentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Froms\StudentPage\StudateMainForm.resx">
+      <DependentUpon>StudateMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Fonts\Poppins-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Fonts\Poppins-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Fonts\Poppins-SemiBold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Froms\assets\data-analytics.png" />
+    <Content Include="Froms\assets\data-analyticsBP.png" />
+    <Content Include="Froms\assets\data-analyticsGary.png" />
+    <None Include="Froms\assets\hideEye.png" />
+    <Content Include="Froms\assets\home.png" />
+    <None Include="Froms\assets\home1.png" />
+    <Content Include="Froms\assets\homeBP.png" />
+    <Content Include="Froms\assets\icon.png" />
+    <None Include="Froms\assets\loupe.png" />
+    <None Include="Froms\assets\loupeWhite.png" />
+    <Content Include="Froms\assets\open-book.png" />
+    <Content Include="Froms\assets\open-bookBP.png" />
+    <Content Include="Froms\assets\people.png" />
+    <Content Include="Froms\assets\peopleBP.png" />
+    <Content Include="Froms\assets\user.png" />
+    <Content Include="Froms\assets\userBP.png" />
+    <None Include="Froms\assets\viewEye.png" />
+    <Content Include="Froms\assets\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BussinesLayer\BusinessLayer.csproj">
+      <Project>{f3cffa7d-d1f8-4ab3-a537-f98dac3f4b84}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

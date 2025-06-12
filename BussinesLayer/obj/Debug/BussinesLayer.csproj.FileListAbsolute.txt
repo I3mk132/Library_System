@@ -1,0 +1,9 @@
+C:\Users\ma066\OneDrive\سطح المكتب\abu-hadhoud USB\Projects\c++\LibrarySystem\BussinesLayer\bin\Debug\BussinesLayer.dll
+C:\Users\ma066\OneDrive\سطح المكتب\abu-hadhoud USB\Projects\c++\LibrarySystem\BussinesLayer\bin\Debug\BussinesLayer.pdb
+C:\Users\ma066\OneDrive\سطح المكتب\abu-hadhoud USB\Projects\c++\LibrarySystem\BussinesLayer\bin\Debug\DataLayer.dll
+C:\Users\ma066\OneDrive\سطح المكتب\abu-hadhoud USB\Projects\c++\LibrarySystem\BussinesLayer\bin\Debug\DataLayer.pdb
+C:\Users\ma066\OneDrive\سطح المكتب\abu-hadhoud USB\Projects\c++\LibrarySystem\BussinesLayer\obj\Debug\BussinesLayer.csproj.AssemblyReference.cache
+C:\Users\ma066\OneDrive\سطح المكتب\abu-hadhoud USB\Projects\c++\LibrarySystem\BussinesLayer\obj\Debug\BussinesLayer.csproj.CoreCompileInputs.cache
+C:\Users\ma066\OneDrive\سطح المكتب\abu-hadhoud USB\Projects\c++\LibrarySystem\BussinesLayer\obj\Debug\Bussines.7AD6049C.Up2Date
+C:\Users\ma066\OneDrive\سطح المكتب\abu-hadhoud USB\Projects\c++\LibrarySystem\BussinesLayer\obj\Debug\BussinesLayer.dll
+C:\Users\ma066\OneDrive\سطح المكتب\abu-hadhoud USB\Projects\c++\LibrarySystem\BussinesLayer\obj\Debug\BussinesLayer.pdb
