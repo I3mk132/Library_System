@@ -47,7 +47,7 @@ The application follows a **3-tier architecture**:
 ### Installation
 1. Clone or download the repository.  
 2. Open the solution file (`.sln`) in Visual Studio.  
-3. Configure the SQL Server connection string in the app settings.  
+3. Configure the SQL Server connection string in the app settings (Data layer -> Settings.cs -> connectionString).  
 4. Build the solution.  
 5. Run the application.
 
