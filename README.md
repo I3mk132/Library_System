@@ -1,5 +1,5 @@
 # Library Management System
-#### Video Demo: <YOUR_YOUTUBE_VIDEO_URL_HERE>
+#### Video Demo: <https://www.youtube.com/watch?v=0r-tLO0CeWI>
 #### Description:
 
 The **Library Management System** is a robust, full-stack desktop application developed using C# and the .NET Framework, designed to modernize and streamline the daily operations of institutional or academic libraries. Built upon a scalable **3-Tier Architecture** (Presentation, Business Logic, and Data Access layers) with a SQL Server backend database, this application bridges traditional database management with modern interactive features, such as real-time optical barcode scanning via laptop webcam and external ISBN API integration.
