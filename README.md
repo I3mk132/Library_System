@@ -1,90 +1,126 @@
 # Library Management System
-#### Video Demo: <[https://www.youtube.com/watch?v=0r-tLO0CeWI](https://youtu.be/Wg4KgCH23rc)>
+#### Video Demo: <https://youtu.be/Wg4KgCH23rc>
 #### Description:
 
-The **Library Management System** is a robust, full-stack desktop application developed using C# and the .NET Framework, designed to modernize and streamline the daily operations of institutional or academic libraries. Built upon a scalable **3-Tier Architecture** (Presentation, Business Logic, and Data Access layers) with a SQL Server backend database, this application bridges traditional database management with modern interactive features, such as real-time optical barcode scanning via laptop webcam and external ISBN API integration.
+The Library Management System is a Windows desktop application that helps library staff manage books, students, employees, departments, and borrowing. It is written in C# on .NET Framework 4.8 with Windows Forms and uses a SQL Server database. Staff can add a book by scanning its barcode with a webcam, and the application fills in the book's details from the Open Library API.
 
-This project was conceived and developed as a comprehensive Final Project for **CS50: Harvard's Introduction to Computer Science**. It demonstrates advanced concepts in Object-Oriented Programming (OOP), secure relational database design, algorithmic validation, graphical user interface (GUI) design, and hardware-software integration.
+I built it as my final project for **CS50: Harvard's Introduction to Computer Science**. The goal was to practice object-oriented design, relational databases, input validation, and connecting software to hardware in one complete application.
 
----
-
-## 🌟 Key Features
-
-* **Secure Authentication & Authorization:** Features a robust login and registration system utilizing secure password hashing techniques. It implements **Role-Based Access Control (RBAC)** to differentiate permissions between institutional employees (librarians/admins) and students.
-* **Real-time Barcode Scanning:** Integrates laptop/PC camera hardware using **AForge.Video** and **ZXing.Net** to optically capture and decode book barcodes. When a barcode is scanned, the system fetches book metadata directly from an external ISBN API, drastically speeding up data entry and checkout processes.
-* **Comprehensive CRUD Operations:** Full management capabilities for Books, Copies, Student Profiles, Employee Records, Borrowing Tasks, and Library Departments.
-* **Borrowing & Return Workflow:** A structured lifecycle tracking system that manages borrow requests, due dates, return confirmations, and real-time availability of physical book copies.
-* **Employee Task & Shift Management:** Admin tools to assign tasks, organize departmental shifts, and manage workplace seat/role allocation for library staff.
-* **Automated System Logging:** A dedicated audit logging engine that records critical user activities (logins, sign-ups, borrow transactions, and administrative errors) for security and traceability.
+[Project overview (Google Drive)](https://drive.google.com/file/d/1jji5tq1SoAHSm_sAPMYodKx2C0OtaMK7/view?usp=sharing)
 
 ---
 
-## 🏛️ Architecture & Design Choices
+## Features
 
-During the development of this application, several architectural and design choices were debated and finalized to ensure maintainability, performance, and clear separation of concerns:
-
-### 1. Three-Tier Architecture vs. Monolithic Structure
-Instead of placing database queries and business rules directly inside UI event handlers (a common approach in basic desktop apps), a strict **3-Tier Architecture** was chosen:
-* **Presentation Layer (WinForms + Guna.UI2):** Strictly responsible for rendering UI components, capturing user inputs, and displaying data. **Guna.UI2** was chosen over standard native WinForms controls to deliver a modern, clean, and responsive user experience.
-* **Business Logic Layer (BLL):** Handles data validation, object mapping, algorithmic processing, and security checks before any request reaches the database or returns to the UI.
-* **Data Access Layer (DAL):** Encapsulates all SQL database communication, keeping SQL queries and connection management isolated.
-
-### 2. ADO.NET vs. Entity Framework (ORM)
-While ORMs like Entity Framework automate SQL generation, **raw ADO.NET** was intentionally chosen for the Data Access Layer. This design choice allowed applying the core SQL optimization principles taught in CS50 directly. By writing parameterized SQL queries manually, the system achieves maximum execution speed, prevents SQL Injection vulnerabilities, and maintains fine-grained control over transactional integrity and database locking.
-
-### 3. Hardware Integration (AForge & ZXing) vs. Manual Barcode Entry
-To elevate the user experience beyond simple manual text entry, **AForge.Video.DirectShow** and **ZXing (Zebra Crossing)** were integrated. This allows librarians to use any standard webcam as an optical barcode scanner, bridging physical library objects with the digital SQL database seamlessly.
+* **Employee accounts:** Sign up and log in. Passwords are stored as salted PBKDF2 hashes.
+* **Permissions:** Each employee can be given access to any of the Home, Students, Books, Statistics, and Profile sections.
+* **Barcode scanning:** A webcam reads EAN-13 ISBN barcodes through AForge.NET and ZXing.Net, and book details are fetched from the Open Library API.
+* **Records management:** Manage books and their physical copies, students, employees, and departments.
+* **Borrowing:** Record a borrow with its return date, track which copies are available, and see borrows that are late. Deleting a borrow record marks the copy as available again.
+* **Student status and cards:** Mark students as in the library, out of the library, or blocked. Student and employee profiles show a QR code of their card number.
+* **Staff information:** Employees can see their shift, working days, and tasks on their home screen.
+* **Statistics and logs:** A dashboard shows usage counts and lists the login, sign-up, borrow, change, and error logs.
 
 ---
 
-## 📂 Project Structure & File Explanations
+## Technologies
 
-The solution (`LibrarySystem.sln`) is organized into three distinct class libraries and application projects:
-
-### 🖥️ 1. PresentationLayer (User Interface)
-This folder contains the Windows Forms application, visual assets, and UI logic:
-* `Program.cs`: The main entry point of the executable that initializes the application state and opens the startup form.
-* `AppSettings.cs`: Manages local application configuration, visual themes, and UI preferences.
-* `Forms/Login/StartUp.cs` & `SignupForm.cs`: Handles user authentication, registration workflows, and initial role verification.
-* `Forms/EMainMenuForm.cs` & `StudateMainForm.cs`: The core dashboard interfaces tailored specifically for Employees/Admins and Students respectively.
-* `Forms/Menues/`: Contains the primary navigation modules:
-  * `BooksForm.cs`: Displays catalog listings with sorting and searching.
-  * `StudentsForm.cs`: Employee interface for monitoring student accounts.
-  * `StaticsForm.cs`: Analytics dashboard displaying usage metrics, active borrows, and inventory statistics.
-  * `ProfileForm.cs`: Manages personal user account settings and activity logs.
-* `Forms/AddUpdateForms/`: Modular dialog forms for data entry and mutation:
-  * `BooksAndBorrows/AddBookForm.cs`, `AddNewBook.cs`, `ViewCurrentBooks.cs`: Handles adding new titles, managing multiple book copies, and viewing stock.
-  * `BooksAndBorrows/AddBorrowForm.cs`, `UpdateBorrowForm.cs`: Manages the checkout and return transactions.
-  * `BooksAndBorrows/ReadBarcodeForm.cs`: The dedicated camera viewport form that activates the webcam, scans barcodes using ZXing, and queries the external API.
-  * `Departments/AddUpdateDepartmentForm.cs`, `Employees/EditEmployeeForm.cs`, `Students/AddStudentForm.cs`, `Tasks/AddTaskForm.cs`: Dedicated administrative forms for CRUD operations on respective entities.
-* `Forms/FiltersForms/`: Contains specialized floating dialogs (`BookFilter.cs`, `BorrowFilter.cs`, `EmployeeFilter.cs`, `StudentFilter.cs`) that build complex search queries and multi-parameter filtering for data grids.
-
-### ⚙️ 2. BusinessLayer (Logic & Validation)
-This library acts as the brain of the system, validating rules and defining data structures:
-* `Security.cs`: Implements cryptographic password hashing and verification algorithms to protect user credentials.
-* `GlobalVariables.cs`: Maintains session state, currently logged-in user information, and active permission tokens across forms.
-* `ObjectClasses/`: Contains plain C# domain models representing database entities: `Books.cs`, `Borrows.cs`, `Copys.cs`, `Departments.cs`, `Employees.cs`, `Logs.cs`, `Students.cs`, and `Tasks.cs`.
-* `Validators/`: Contains dedicated validation logic (`BookValidator.cs`, `BorrowValidator.cs`, `StudentValidator.cs`, etc.) that verifies input constraints (e.g., valid email formats, positive copy numbers, date consistency) before passing data to the DAL.
-* `Services/CodeReadWrite.cs`: A specialized service class that manages barcode image generation, decoding algorithms, and external API communication for ISBN lookups.
-
-### 🗄️ 3. DataLayer (Database Interaction)
-This library handles all direct communication with the Microsoft SQL Server:
-* `Settings.cs`: Centrally stores and provides the SQL Server connection string used across all data access methods.
-* `Objects.cs`: Data transfer helpers and mapping utilities that translate raw SQL `DataRow` and `SqlDataReader` outputs into strongly-typed C# objects.
-* `*DataAccess.cs` (`BooksDataAccess.cs`, `BorrowsDataAccess.cs`, `EmployeesDataAccess.cs`, etc.): Each class corresponds to a database table and encapsulates parameterized SQL queries (`SELECT`, `INSERT`, `UPDATE`, `DELETE`) using `SqlConnection`, `SqlCommand`, and `SqlDataAdapter`.
+* C#, .NET Framework 4.8, Windows Forms
+* Microsoft SQL Server, ADO.NET
+* [Guna.UI2.WinForms](https://www.nuget.org/packages/Guna.UI2.WinForms) for the interface
+* [AForge.NET](https://www.nuget.org/packages/AForge.Video.DirectShow) for camera access
+* [ZXing.Net](https://www.nuget.org/packages/ZXing.Net) for reading barcodes and generating barcodes and QR codes
+* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json) for reading API responses
+* [Open Library Books API](https://openlibrary.org/dev/docs/api/books) for book data
 
 ---
 
-## 🚀 Getting Started
+## Design Choices
+
+### Three layers
+The solution is split into presentation, business, and data projects. Forms talk to the business layer, and only the business layer calls the data layer. The presentation project has no reference to the data project, so SQL stays out of the forms.
+
+### ADO.NET instead of Entity Framework
+An ORM would have generated the SQL for me. I chose ADO.NET and wrote the queries by hand to practice the SQL I learned in CS50 and to control exactly what runs against the database. User input is passed through SQL parameters.
+
+### Webcam instead of a dedicated scanner
+Typing an ISBN and all of a book's details is slow, and not everyone has a barcode scanner. Using AForge and ZXing means any ordinary webcam can do the job.
+
+---
+
+## Project Structure
+
+The solution is `LibrarySystem.sln`. Some folder names contain spelling mistakes (`Froms`, `Menues`, `BussinesLayer`). The paths below match the actual names.
+
+### PresentationLayer: user interface
+* `Program.cs`: Application entry point. Shows the login form, then the main menu.
+* `AppSettings.cs`: Shared colors, fonts, and table styling.
+* `Fonts/`: The Poppins font files.
+* `Froms/Login/`: `StartUp.cs` (login) and `SignupForm.cs` (employee registration).
+* `Froms/EMainMenuForm.cs`: The main window. It enables sections according to the employee's permissions.
+* `Froms/Menues/`: The main sections: `HomeForm.cs`, `StudentsForm.cs`, `BooksForm.cs`, `StaticsForm.cs` (statistics and logs), and `ProfileForm.cs`.
+* `Froms/AddUpdateForms/BooksAndBorrows/`: Adding books and copies (`AddBookForm.cs`, `AddNewBook.cs`, `ViewCurrentBooks.cs`), managing borrows (`AddBorrowForm.cs`, `UpdateBorrowForm.cs`), and scanning barcodes (`ReadBarcodeForm.cs`).
+* `Froms/AddUpdateForms/Departments/`, `Employees/`, `Students/`, `Tasks/`: Dialogs for adding and editing those records.
+* `Froms/FiltersForms/`: Search filters for books, borrows, and students. `EmployeeFilter.cs` is an unfinished placeholder.
+* `Froms/StudentPage/StudateMainForm.cs`: An empty placeholder for a future student area.
+
+### BussinesLayer: logic and validation
+* `Security.cs`: Password hashing and verification, permission flags, and card number generation.
+* `GlobalVariables.cs`: The logged-in employee and their session data.
+* `ObjectClasses/`: Business classes that load and save records through the data layer: `Books.cs`, `Borrows.cs`, `Copys.cs`, `Departments.cs`, `Employees.cs`, `Logs.cs`, `Students.cs`, and `Tasks.cs`.
+* `Validators/`: Input checks that the forms use, such as text lengths and email and ISBN formats.
+* `Services/CodeReadWrite.cs`: Barcode and QR code reading and writing, and Open Library lookups.
+
+### DataLayer: database access
+* `Settings.cs`: The SQL Server connection string.
+* `Objects.cs`: Plain classes that carry data between the layers.
+* `*DataAccess.cs`: One class per area of the database, containing its SQL queries.
+
+### Other folders
+* `ExampleImages/`: Sample department, employee, and student photos.
+* `otherfiles/`: [draw.io](https://www.drawio.com/) diagrams of the system and the database.
+
+---
+
+## Getting Started
 
 ### Prerequisites
-* **Operating System:** Windows 10 or Windows 11.
-* **IDE:** Visual Studio 2017, 2019, or 2022 (with *.NET Desktop Development* workload installed).
-* **Database:** Microsoft SQL Server (Express, Developer, or Enterprise edition) & SQL Server Management Studio (SSMS).
-* **Hardware:** A functional webcam (internal laptop camera or USB webcam) for barcode scanning features.
-* **Internet Connection:** Required for fetching book details via external ISBN API.
+* Windows 10 or 11
+* Visual Studio 2022 with the **.NET desktop development** workload
+* SQL Server (Express or Developer edition) and SQL Server Management Studio
+* A webcam, for barcode scanning
+* An internet connection, for restoring NuGet packages and looking up books
 
-### Installation & Configuration
-1. **Clone the Repository:**
+### Installation
+1. Clone the repository:
    ```bash
-   git clone [https://github.com/](https://github.com/)<YOUR_USERNAME>/<YOUR_REPOSITORY_NAME>.git
+   git clone https://github.com/I3mk132/Library_System.git
+   ```
+2. Open `LibrarySystem.sln` in Visual Studio.
+3. Restore the NuGet packages: right-click the solution and choose **Restore NuGet Packages**.
+4. In SQL Server Management Studio, restore `Database/LibraryDB.bak` as a database named `LibraryDB`.
+5. In `DataLayer/Settings.cs`, change `connectionString` to match your SQL Server login:
+   ```csharp
+   public static string connectionString = @"Server=.;Database=LibraryDB;User Id=YOUR_USER;Password=YOUR_PASSWORD;";
+   ```
+6. Set `PresentationLayer` as the startup project and press **F5**.
+7. Choose **Sign up** to create an employee account, then log in.
+
+Guna.UI2 is a commercial library. According to its license, editing forms in the Visual Studio designer requires a Guna activation code or its 14-day trial.
+
+---
+
+## Known Limitations
+
+* Only employees can log in. There is no student login or student area yet.
+* Permissions are only enforced in the interface, and the sign-up form gives new employees access to every section.
+* The Add Task dialog does not save new tasks yet.
+* Photos must be chosen from inside the `ExampleImages` folder, and the application must run from its build folder so it can find them.
+* Passwords cannot be reset yet.
+* The connection string is stored in the source code, so this project is suitable for local use only.
+
+---
+
+## License
+
+This project is available under the MIT License. Third-party libraries, including Guna.UI2, are covered by their own licenses.
