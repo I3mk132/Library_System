@@ -1,5 +1,5 @@
 # Library Management System
-#### Video Demo: <https://youtu.be/Wg4KgCH23rc>
+#### Video Demo: <https://youtu.be/0r-tLO0CeWI?si=mWiWAw2LC74B3QwD>
 #### Description:
 
 The Library Management System is a Windows desktop application that helps library staff manage books, students, employees, departments, and borrowing. It is written in C# on .NET Framework 4.8 with Windows Forms and uses a SQL Server database. Staff can add a book by scanning its barcode with a webcam, and the application fills in the book's details from the Open Library API.
